@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="login-pane">
+      <div class="login-container">
+        <div class="login-pane">
+          <h2>Login</h2>
+          <form (ngSubmit)="onLogin()">
+            <label for="username">Username</label>
+            <input kendoTextBox id="username" [(ngModel)]="username" name="username" required>
+  
+            <label for="password">Password</label>
+            <input kendoTextBox type="password" id="password" [(ngModel)]="password" name="password" required>
+  
+            <button kendoButton type="submit">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <div class="welcome-pane">
+        <div class="welcome-message">
+          <h1>Demo App</h1>
+          <p>Go to Dashboard</p>
+      </div>
+    </div>
+  
