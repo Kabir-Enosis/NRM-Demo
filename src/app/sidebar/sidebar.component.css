@@ -1,0 +1,52 @@
+.sidebar {
+    width: 200px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .tab-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .tab-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tab-list li.active {
+    background-color: #fc7373;
+    font-weight: bold;
+  }
+  
+  .tab-list li:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .profile-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+  }
+  
+  .profile-icon {
+    font-size: 24px;
+  }
+  
+  .user-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  button[kendoButton] {
+    margin-top: 5px;
+  }
+  

@@ -1,1 +1,20 @@
-<p>sidebar works!</p>
+<div class="sidebar">
+    <ul class="tab-list">
+      <li 
+        *ngFor="let tab of tabs"
+        [class.active]="(selectedTab$ | async ) ? (selectedTab$ | async ) === tab : false"
+        (click)="tabChanged(tab)">
+        {{ tab }}
+      </li>
+    </ul>
+  
+    <div class="profile-section">
+      <div class="profile-icon">
+      </div>
+      <div class="user-info">
+        <span>👤John Doe</span>
+        <button kendoButton look="flat">Logout</button>
+      </div>
+    </div>
+  </div>
+  
