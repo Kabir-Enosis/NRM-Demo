@@ -25,6 +25,7 @@ export class SidebarComponent implements OnInit{
   constructor(private store: Store, private router: Router) {
     this.selectedTab$ = this.store.select(getSelectedTab);
     this.store.dispatch(selectTab({tab: 'Home'}))
+    this.router.navigate([`/dashboard/home`]);
 
   }
 

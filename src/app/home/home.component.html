@@ -6,7 +6,7 @@
         <kendo-chart-category-axis-item
           field="year"
           [categories]="years"
-          text="Year">
+          [title]="{text:'Year'}">
         </kendo-chart-category-axis-item>
       </kendo-chart-category-axis>
       
@@ -25,7 +25,7 @@
       </kendo-chart-series>
     
       <kendo-chart-value-axis>
-      <kendo-chart-value-axis-item text="Sales (Units)">
+      <kendo-chart-value-axis-item [title]="{text:'Sales (Units)'}">
       </kendo-chart-value-axis-item>
     </kendo-chart-value-axis>
     
