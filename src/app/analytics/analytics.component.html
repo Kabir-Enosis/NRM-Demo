@@ -1,0 +1,70 @@
+ <div class="charts">
+    <div class="line-chart-card">
+        <kendo-chart>
+            <kendo-chart-title text="Units sold"></kendo-chart-title>
+            <kendo-chart-category-axis>
+            <kendo-chart-category-axis-item
+                [categories]="['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']"
+                [title]="{ text: 'Months' }"
+            >
+            </kendo-chart-category-axis-item>
+            </kendo-chart-category-axis>
+            <kendo-chart-series>
+            <kendo-chart-series-item
+                type="line"
+                [data]="[323, 276, 310, 12, 240, 156, 98]"
+            >
+            </kendo-chart-series-item>
+            <kendo-chart-series-item
+                type="line"
+                [data]="[265, 210, 287, 244, 190, 167, 212]"
+            >
+            </kendo-chart-series-item>
+            <kendo-chart-series-item
+                type="line"
+                [data]="[356, 140, 195, 346, 123, 78, 95]"
+            >
+            </kendo-chart-series-item>
+            </kendo-chart-series>
+        </kendo-chart>
+    </div>
+    <div class="pie-chart-card">
+        <kendo-chart title="Sales percentage by product categories">
+            <kendo-chart-legend position="bottom"></kendo-chart-legend>
+            <kendo-chart-series>
+              <kendo-chart-series-item
+                type="pie"
+                [data]="pieData"
+                field="value"
+                categoryField="category"
+                [labels]="{ visible: true, content: labelContent }"
+              >
+              </kendo-chart-series-item>
+            </kendo-chart-series>
+          </kendo-chart>
+    </div>
+ </div>
+    
+
+<div class="map-card">
+    <div class="map-card-header">
+        <h3>Location overview</h3>
+    </div>
+    <div class="map-card-body">
+        <kendo-map [center]="center" [zoom]="15">
+        <kendo-map-layers>
+            <kendo-map-tile-layer
+            [subdomains]="tileSubdomains"
+            [urlTemplate]="tileUrl"
+            >
+            </kendo-map-tile-layer>
+            <kendo-map-marker-layer
+            [data]="markers"
+            locationField="latlng"
+            titleField="name"
+            >
+            </kendo-map-marker-layer>
+        </kendo-map-layers>
+        </kendo-map>
+    </div>
+</div>
