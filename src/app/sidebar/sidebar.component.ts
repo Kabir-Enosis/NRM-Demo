@@ -4,7 +4,7 @@ import { AppBarModule } from '@progress/kendo-angular-navigation';
 import { ButtonModule } from '@progress/kendo-angular-buttons';
 import { InputsModule, TextBoxModule } from '@progress/kendo-angular-inputs';
 import { CommonModules } from '../commonModule';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { selectTab } from '../store/tab.action';
@@ -19,12 +19,12 @@ import { Observable } from 'rxjs';
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent implements OnInit{
-  tabs = ['Dashboard', 'Profile', 'Settings'];
+  tabs = ['Home', 'Analytics', 'Charts', 'Graphs'];
   selectedTab$!: Observable<string> 
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this.selectedTab$ = this.store.select(getSelectedTab);
-    this.store.dispatch(selectTab({tab: 'Dashboard'}))
+    this.store.dispatch(selectTab({tab: 'Home'}))
 
   }
 
@@ -32,11 +32,11 @@ export class SidebarComponent implements OnInit{
     this.selectedTab$.subscribe((tab1) => {
       console.log('Current selected tab:', tab1);
     });
-    
   }
 
   tabChanged(tab: string) {
     this.store.dispatch(selectTab({ tab }));
+    this.router.navigate([`/dashboard/${tab.toLowerCase()}`]);
   }
 
 }
