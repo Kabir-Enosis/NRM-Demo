@@ -33,7 +33,7 @@ export class SidebarComponent implements OnInit{
   selectedTab$!: Observable<string> 
   public homeIcon: SVGIcon = homeIcon;
   public analyticsIcon: SVGIcon = graphIcon;
-  public graphsIcon: SVGIcon = chartColumnStackedIcon;
+  public barGraphsIcon: SVGIcon = chartColumnStackedIcon;
   public chartsIcon: SVGIcon = tableCellPropertiesIcon;
   public userIcon: SVGIcon = userIcon;
 
@@ -64,7 +64,7 @@ export class SidebarComponent implements OnInit{
       case 'Charts':
         return this.chartsIcon;
       case 'Graphs':
-        return this.graphsIcon;
+        return this.barGraphsIcon;
       default:
         return this.homeIcon; 
     }
