@@ -4,6 +4,7 @@
         *ngFor="let tab of tabs"
         [class.active]="(selectedTab$ | async ) ? (selectedTab$ | async ) === tab : false"
         (click)="tabChanged(tab)">
+        <kendo-svgicon [icon]="getIcon(tab)"></kendo-svgicon>
         {{ tab }}
       </li>
     </ul>
@@ -12,7 +13,10 @@
       <div class="profile-icon">
       </div>
       <div class="user-info">
-        <span>👤John Doe</span>
+        <span>
+          <kendo-svgicon [icon]="userIcon"></kendo-svgicon>
+          Admin user
+        </span>
         <button kendoButton look="flat">Logout</button>
       </div>
     </div>
