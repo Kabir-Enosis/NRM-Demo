@@ -67,6 +67,7 @@ export class SidebarComponent implements OnInit{
         return this.barGraphsIcon;
       default:
         return this.homeIcon; 
+        
     }
   }
 
