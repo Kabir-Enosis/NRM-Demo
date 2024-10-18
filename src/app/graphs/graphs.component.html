@@ -1,35 +1,56 @@
+
+<div class="bar-chart">
+  <kendo-chart
+    renderAs="canvas"
+    [pannable]="false"   
+    [zoomable]="false"    
+    [valueAxis]="valueAxis"
+    [categoryAxis]="{
+      labels: {
+        step: 20,
+      }
+    }"
+    [style.width]="'100%'"
+  >
+    <kendo-chart-series>
+      <kendo-chart-series-item
+        [data]="data"
+        field="value"
+        categoryField="category"
+      >
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+  </kendo-chart>
+</div>
+
 <div class="example-wrapper">
     <div class="page">
       <div class="content">
         <kendo-gridlayout [rows]="[90, 90, 90]" [cols]="['32%', '32%', '32%']" [gap]="15">
           
-          <!-- Box 1 - Button with label in a card -->
+          
           <kendo-gridlayout-item [col]="1" [row]="1" [colSpan]="2" class="box rect">
                 <div class="title">Product Purchase</div>
                 <label text="Buy Now"></label>
                 <kendo-button [primary]="true">Purchase</kendo-button>
           </kendo-gridlayout-item>
 
-          <!-- Box 2 - Progress bar in a card -->
           <kendo-gridlayout-item [col]="3" [row]="1" class="box">
                 <div class="title">Sales Report</div>
                 <kendo-button>Download Report</kendo-button>
           </kendo-gridlayout-item>
 
-          <!-- Box 3 - Input for product discount in a card -->
           <kendo-gridlayout-item [col]="1" [row]="2" class="box">
                 <div class="title">Discount Code</div>
                 <kendo-textbox placeholder="Enter Discount Code"></kendo-textbox>
           </kendo-gridlayout-item>
 
-          <!-- Box 4 - Sales report in a card -->
           <kendo-gridlayout-item [col]="2" [row]="2" [colSpan]="2" [rowSpan]="2" class="box big">
                 <div class="title">Product Stock Status</div>
                 <kendo-circularprogressbar [value]="75"  
                 style="width: 150px; height: 150px;"></kendo-circularprogressbar>
           </kendo-gridlayout-item>
 
-          <!-- Box 5 - Review in a card -->
           <kendo-gridlayout-item [col]="1" [row]="3" class="box rect">
                 <div class="title">Leave a Review</div>
                 <kendo-textarea placeholder="Write your feedback"></kendo-textarea>
@@ -38,23 +59,4 @@
         </kendo-gridlayout>
       </div>
     </div>
-</div>
-
-<div class="bar-chart">
-    <kendo-chart
-      renderAs="canvas"
-      [pannable]="false"   
-      [zoomable]="false"    
-      [valueAxis]="valueAxis"
-      [style.width]="'100%'"
-    >
-      <kendo-chart-series>
-        <kendo-chart-series-item
-          [data]="data"
-          field="value"
-          categoryField="category"
-        >
-        </kendo-chart-series-item>
-      </kendo-chart-series>
-    </kendo-chart>
 </div>

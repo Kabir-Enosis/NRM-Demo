@@ -2,7 +2,7 @@
     width: 200px;
     background-color: #ffffff;
     border-right: 1px solid #e0e0e0;
-    height: 100vh ;
+    height: 95% ;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-top: auto;
   }
   
   .profile-icon {

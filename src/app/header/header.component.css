@@ -1,45 +1,19 @@
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white; 
-    padding: 10px 20px;
-    border-bottom: 2px solid #ddd; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .search-container {
-    flex: 1;
-    margin: 0 20px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .search-bar {
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    padding-left: 40px;
-  }
-  
-  .search-bar  {
-    color: #888; 
-  }
-  
-  .notification-icon {
-    background-color: transparent; 
-    color: #555; 
-    border-radius: 50%; 
-    padding: 10px;
-  }
-  
-  .notification-icon:hover {
-    background-color: #f1f1f1; 
-  }
-  
+body {
+  background: #fc7373;
+}
+.title {
+  font-size: 18px;
+  margin: 0;
+}
+kendo-badge-container {
+  margin-right: 4px;
+}
+.k-icon {
+  font-size: 18px;
+}
+.k-appbar .k-appbar-separator {
+  background: #fc7373;
+}
+.actions .k-button {
+  padding: 0;
+}
