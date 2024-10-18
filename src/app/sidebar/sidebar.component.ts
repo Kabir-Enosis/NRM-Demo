@@ -7,7 +7,7 @@ import { CommonModules } from '../commonModule';
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { selectTab } from '../store/tab.action';
+import { logout, selectTab } from '../store/tab.action';
 import { getSelectedTab } from '../store/tab.selector';
 import { Observable } from 'rxjs';
 import { IconsModule } from "@progress/kendo-angular-icons";
@@ -61,11 +61,16 @@ export class SidebarComponent implements OnInit{
     else if(tab === 'Analytics') 
         return this.analyticsIcon;
     else if(tab ===  'Charts')
-        return this.chartsIcon;
+        return this.gridIcon;
     else if(tab ===  'Graphs')
         return this.barGraphsIcon;
       
     return this.homeIcon; 
+  }
+
+  logOut() {
+    this.store.dispatch(logout());
+    this.router.navigate(['/login']);
   }
 
 }
