@@ -56,18 +56,16 @@ export class SidebarComponent implements OnInit{
   }
 
   getIcon(tab: string): SVGIcon {
-    switch (tab) {
-      case 'Home':
-        return this.homeIcon;
-      case 'Analytics':
+    if(tab === 'Home')
+      return this.homeIcon;
+    else if(tab === 'Analytics') 
         return this.analyticsIcon;
-      case 'Charts':
-        return this.gridIcon;
-      case 'Graphs':
+    else if(tab ===  'Charts')
+        return this.chartsIcon;
+    else if(tab ===  'Graphs')
         return this.barGraphsIcon;
-      default:
-        return this.homeIcon; 
-    }
+      
+    return this.homeIcon; 
   }
 
 }
