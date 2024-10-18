@@ -15,7 +15,7 @@ import {
   homeIcon,
   graphIcon,
   chartColumnStackedIcon,
-  tableCellPropertiesIcon,
+  gridLayoutIcon,
   userIcon,
   SVGIcon,
 } from "@progress/kendo-svg-icons";
@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit{
   public homeIcon: SVGIcon = homeIcon;
   public analyticsIcon: SVGIcon = graphIcon;
   public barGraphsIcon: SVGIcon = chartColumnStackedIcon;
-  public chartsIcon: SVGIcon = tableCellPropertiesIcon;
+  public gridIcon: SVGIcon = gridLayoutIcon;
   public userIcon: SVGIcon = userIcon;
 
   constructor(private store: Store, private router: Router) {
