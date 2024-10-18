@@ -55,8 +55,8 @@ export class SidebarComponent implements OnInit{
     this.router.navigate([`/dashboard/${tab.toLowerCase()}`]);
   }
 
-  getIcon(tab: string): SVGIcon {
-    switch (tab) {
+  getIcon(tabName: string): SVGIcon {
+    switch (tabName) {
       case 'Home':
         return this.homeIcon;
       case 'Analytics':
