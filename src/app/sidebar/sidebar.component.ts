@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit{
   public homeIcon: SVGIcon = homeIcon;
   public analyticsIcon: SVGIcon = graphIcon;
   public graphsIcon: SVGIcon = chartColumnStackedIcon;
-  public chartsIcon: SVGIcon = gridLayoutIcon;
+  public gridIcon: SVGIcon = gridLayoutIcon;
   public userIcon: SVGIcon = userIcon;
 
   constructor(private store: Store, private router: Router) {
@@ -62,7 +62,7 @@ export class SidebarComponent implements OnInit{
       case 'Analytics':
         return this.analyticsIcon;
       case 'Charts':
-        return this.chartsIcon;
+        return this.gridIcon;
       case 'Graphs':
         return this.graphsIcon;
       default:
