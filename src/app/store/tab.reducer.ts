@@ -1,19 +1,25 @@
 import { createReducer, on } from '@ngrx/store';
-import { selectTab } from './tab.action';
+import { login, logout, selectTab } from './tab.action';
+import { initialState } from './tab.state';
 
 export interface TabState {
     selectedTab: string;
 }
 
-const initialState: TabState = {
-    selectedTab: 'Dashboard', 
+const initialTabState: TabState = {
+    selectedTab: 'Home', 
 };
 
 export const tabReducer = createReducer(
-  initialState,
+  initialTabState,
   on(selectTab, (state, { tab }) => ({
     ...state,
     selectedTab: tab
-  }))
+  })),
 );
  
+export const logInReducer = createReducer(
+  initialState,
+  on(login, (state) => ({ ...state, isLoggedIn: true })),
+  on(logout, (state) => ({ ...state, isLoggedIn: false }))
+)
