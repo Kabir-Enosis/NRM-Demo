@@ -17,6 +17,8 @@ import {
   chartColumnStackedIcon,
   gridLayoutIcon,
   userIcon,
+  caretAltLeftIcon,
+  caretAltRightIcon,
   SVGIcon,
 } from "@progress/kendo-svg-icons";
 
@@ -29,13 +31,17 @@ import {
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent implements OnInit{
-  tabs = ['Home', 'Analytics', 'Charts', 'Graphs'];
+  generalTabs = ['Home', 'Analytics'];
+  statsTabs = ['Charts', 'Graphs'];
+  isCollapsed: boolean = false;
   selectedTab$!: Observable<string> 
   public homeIcon: SVGIcon = homeIcon;
   public analyticsIcon: SVGIcon = graphIcon;
   public barGraphsIcon: SVGIcon = chartColumnStackedIcon;
   public gridIcon: SVGIcon = gridLayoutIcon;
   public userIcon: SVGIcon = userIcon;
+  public leftarw: SVGIcon = caretAltLeftIcon;
+  public rightarw: SVGIcon = caretAltRightIcon;
 
   constructor(private store: Store, private router: Router) {
     this.selectedTab$ = this.store.select(getSelectedTab);
@@ -71,6 +77,10 @@ export class SidebarComponent implements OnInit{
   logOut() {
     this.store.dispatch(logout());
     this.router.navigate(['/login']);
+  }
+
+  collapse() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
 }

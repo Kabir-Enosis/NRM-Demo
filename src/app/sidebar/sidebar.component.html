@@ -1,15 +1,37 @@
-<div class="sidebar">
+<div class="sidebar" [class.collapsed]="isCollapsed">
+
+  <div>
+    <button class="toggle-btn" (click)="collapse()">
+      <ng-container *ngIf="isCollapsed; else expanded">
+        <kendo-svgicon [icon]="rightarw"></kendo-svgicon>
+      </ng-container>
+      <ng-template #expanded>
+        <kendo-svgicon [icon]="leftarw"></kendo-svgicon>
+      </ng-template>
+    </button>
+
     <ul class="tab-list">
+      <li class="group-title">{{ isCollapsed ? '' : 'General' }}</li>
       <li 
-        *ngFor="let tab of tabs"
-        [class.active]="(selectedTab$ | async ) ? (selectedTab$ | async ) === tab : false"
+        *ngFor="let tab of generalTabs"
+        [class.active]="(selectedTab$ | async) === tab"
         (click)="tabChanged(tab)">
         <kendo-svgicon [icon]="getIcon(tab)"></kendo-svgicon>
-        {{ tab }}
+        {{ isCollapsed ? '' : tab }}
+      </li>
+
+      <li class="group-title">{{ isCollapsed ? '' : 'Statistics' }}</li>
+      <li 
+        *ngFor="let tab of statsTabs"
+        [class.active]="(selectedTab$ | async) === tab"
+        (click)="tabChanged(tab)">
+        <kendo-svgicon [icon]="getIcon(tab)"></kendo-svgicon>
+        {{ isCollapsed ? '' : tab }}
       </li>
     </ul>
-  
-    <div class="profile-section">
+  </div>
+
+    <div class="profile-section" *ngIf="!isCollapsed">
       <div class="profile-icon">
       </div>
       <div class="user-info">
@@ -20,5 +42,14 @@
         <button kendoButton look="flat" (click)="logOut()">Logout</button>
       </div>
     </div>
+
+    <div class="profile-section" *ngIf="isCollapsed">
+      <div class="user-info">
+        <span>
+          <kendo-svgicon [icon]="userIcon"></kendo-svgicon>
+        </span>
+      </div>
+    </div>
+
   </div>
   
