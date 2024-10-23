@@ -1,6 +1,15 @@
 <div class="sidebar" [class.collapsed]="isCollapsed">
 
   <div>
+    @if (isCollapsed) {
+      <div class="logo-container">
+        <img src="/logo-short.png" alt="Logo" class="logo" />
+      </div>
+    } @else {
+      <div class="logo-container">
+        <img src="/logo.png" alt="Logo" class="logo" />
+      </div>
+    }
     <button class="toggle-btn" (click)="collapse()">
       <ng-container *ngIf="isCollapsed; else expanded">
         <kendo-svgicon [icon]="rightarw"></kendo-svgicon>
@@ -16,15 +25,27 @@
         *ngFor="let tab of generalTabs"
         [class.active]="(selectedTab$ | async) === tab"
         (click)="tabChanged(tab)">
+        <div class="selectBar" *ngIf="(selectedTab$ | async) === tab"></div>
         <kendo-svgicon [icon]="getIcon(tab)"></kendo-svgicon>
         {{ isCollapsed ? '' : tab }}
       </li>
 
-      <li class="group-title">{{ isCollapsed ? '' : 'Statistics' }}</li>
+      <li class="group-title">{{ isCollapsed ? '' : 'Analytics' }}</li>
       <li 
-        *ngFor="let tab of statsTabs"
+        *ngFor="let tab of analyticsTabs"
         [class.active]="(selectedTab$ | async) === tab"
         (click)="tabChanged(tab)">
+        <div class="selectBar" *ngIf="(selectedTab$ | async) === tab"></div>
+        <kendo-svgicon [icon]="getIcon(tab)"></kendo-svgicon>
+        {{ isCollapsed ? '' : tab }}
+      </li>
+
+      <li class="group-title">{{ isCollapsed ? '' : 'Management' }}</li>
+      <li 
+        *ngFor="let tab of managementTabs"
+        [class.active]="(selectedTab$ | async) === tab"
+        (click)="tabChanged(tab)">
+        <div class="selectBar" *ngIf="(selectedTab$ | async) === tab"></div>
         <kendo-svgicon [icon]="getIcon(tab)"></kendo-svgicon>
         {{ isCollapsed ? '' : tab }}
       </li>

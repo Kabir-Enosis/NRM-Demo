@@ -1,23 +1,11 @@
 <kendo-appbar>
-  <kendo-appbar-section>
-    <button kendoButton fillMode="flat">
-      <kendo-svgicon [icon]="menuIcon"></kendo-svgicon>
-    </button>
-  </kendo-appbar-section>
-
-  <kendo-appbar-spacer width="8px"></kendo-appbar-spacer>
-
-  <kendo-appbar-section>
-    <h1 class="title">Demo App</h1>
-  </kendo-appbar-section>
-
-  <kendo-appbar-spacer width="268px"></kendo-appbar-spacer>
 
   <kendo-appbar-section>
     <kendo-textbox
       [style.width.px]="360"
       placeholder="Search"
       [clearButton]="true"
+      class="search-box"
     >
       <ng-template kendoTextBoxPrefixTemplate>
         <kendo-svgicon [icon]="searchIcon"></kendo-svgicon>
@@ -29,10 +17,27 @@
 
   <kendo-appbar-section class="actions">
     <kendo-badge-container>
-      <button kendoButton fillMode="flat">
-        <kendo-svgicon [icon]="bellIcon"></kendo-svgicon>
-      </button>
-      <kendo-badge size="small">12</kendo-badge>
+      <div class="notify">
+        <button kendoButton fillMode="flat">
+          <kendo-svgicon [icon]="bellIcon"></kendo-svgicon>
+        </button>
+      </div>
+      <kendo-badge size="small">2</kendo-badge>
     </kendo-badge-container>
   </kendo-appbar-section>
+
+  <div class="vertical-separator"></div>
+
+  <kendo-appbar-section class="profile-container" >
+      <div class="profile-card">
+        <kendo-avatar [imageSrc]="accountImg"></kendo-avatar>
+        <div class="profile-details">
+          <h3 class="name">Kabir Ahmed</h3>
+          <p class="role">Admin</p>
+        </div>
+      </div>
+  </kendo-appbar-section>
+
+<div class="horizontal-separator"></div>
+
 </kendo-appbar>

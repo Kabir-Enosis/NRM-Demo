@@ -7,7 +7,7 @@ export interface TabState {
 }
 
 const initialTabState: TabState = {
-    selectedTab: 'Home', 
+    selectedTab: 'Dashboard', 
 };
 
 export const tabReducer = createReducer(

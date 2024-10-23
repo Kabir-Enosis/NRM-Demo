@@ -1,9 +1,13 @@
-body {
-  background: #fc7373;
-}
 .title {
   font-size: 18px;
   margin: 0;
+}
+kendo-appbar {
+  height: fit-content;
+  width: 100%;
+  background-color: transparent;
+  box-shadow: none;
+  overflow: visible
 }
 kendo-badge-container {
   margin-right: 4px;
@@ -11,9 +15,75 @@ kendo-badge-container {
 .k-icon {
   font-size: 18px;
 }
-.k-appbar .k-appbar-separator {
-  background: #fc7373;
+
+.search-box {
+  padding-left: 5px;
 }
+
 .actions .k-button {
   padding: 0;
+  background-color: #ffffff;
+}
+
+.notify {
+  border: 1px solid rgb(138, 138, 138);
+  border-radius: 30%;
+  padding: 5px;
+  height: max-content;
+  width: max-content;
+  background-color: #ffffff;
+}
+.profile-container {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  justify-content: end;
+  margin-right: 20px;
+  width: fit-content;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  justify-items: space-around;
+  gap: 10px;
+}
+.avatar {
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%;  
+  margin-right: 8px;  
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.role {
+  margin: 0;
+  font-size: 12px;
+  color: #666;  
+}
+
+.horizontal-separator {
+  left: -28px;
+  position: relative;
+  width: calc(100% + 28px); 
+  height: 1px;
+  background-color: #d3d3d3; 
+  margin: 8px 0;
+}
+
+.vertical-separator {
+  width: 1px;
+  height: 40px; 
+  background-color: #d3d3d3; 
+  margin: 0 8px;
 }

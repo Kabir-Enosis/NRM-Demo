@@ -23,4 +23,5 @@ export class HeaderComponent {
   public menuIcon: SVGIcon = menuIcon;
   public searchIcon: SVGIcon = searchIcon;
   public bellIcon: SVGIcon = bellIcon;
+  public accountImg = '/image.png';
 }

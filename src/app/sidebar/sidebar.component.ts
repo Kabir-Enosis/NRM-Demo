@@ -14,13 +14,21 @@ import { IconsModule } from "@progress/kendo-angular-icons";
 import {
   homeIcon,
   graphIcon,
-  chartColumnStackedIcon,
-  gridLayoutIcon,
   userIcon,
   caretAltLeftIcon,
   caretAltRightIcon,
+  dollarIcon,
+  groupIcon,
   SVGIcon,
+  gearIcon,
+  cloudIcon,
+  fileTxtIcon,
+  fileReportIcon,
+  imageMapEditorIcon,
+  alignItemsEndAltIcon,
+  userOutlineIcon,
 } from "@progress/kendo-svg-icons";
+import { Image } from '@progress/kendo-drawing';
 
 
 @Component({
@@ -30,48 +38,81 @@ import {
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
-export class SidebarComponent implements OnInit{
-  generalTabs = ['Home', 'Analytics'];
-  statsTabs = ['Charts', 'Graphs'];
+export class SidebarComponent {
+  generalTabs = ['Dashboard', 'Annual Income', 'Checks & Deduction'];
+  analyticsTabs = ['Map', 'Production', 'Reports'];
+  managementTabs = ['Upload Checks', 'Check files', 'Assets', 'User Management'];
   isCollapsed: boolean = false;
   selectedTab$!: Observable<string> 
-  public homeIcon: SVGIcon = homeIcon;
-  public analyticsIcon: SVGIcon = graphIcon;
-  public barGraphsIcon: SVGIcon = chartColumnStackedIcon;
-  public gridIcon: SVGIcon = gridLayoutIcon;
-  public userIcon: SVGIcon = userIcon;
-  public leftarw: SVGIcon = caretAltLeftIcon;
-  public rightarw: SVGIcon = caretAltRightIcon;
+  userIcon: SVGIcon = userIcon;
+  leftarw: SVGIcon = caretAltLeftIcon;
+  rightarw: SVGIcon = caretAltRightIcon;
 
   constructor(private store: Store, private router: Router) {
     this.selectedTab$ = this.store.select(getSelectedTab);
-    this.store.dispatch(selectTab({tab: 'Home'}))
+    this.store.dispatch(selectTab({tab: 'Dashboard'}))
     this.router.navigate([`/dashboard/home`]);
 
   }
 
-  ngOnInit() {
-    this.selectedTab$.subscribe((tab1) => {
-      console.log('Current selected tab:', tab1);
-    });
-  }
-
   tabChanged(tab: string) {
+    let mappedTab: string = this.getTabShortForm(tab);
     this.store.dispatch(selectTab({ tab }));
-    this.router.navigate([`/dashboard/${tab.toLowerCase()}`]);
+    this.router.navigate([`/dashboard/${mappedTab}`]);
   }
 
   getIcon(tab: string): SVGIcon {
-    if(tab === 'Home')
-      return this.homeIcon;
-    else if(tab === 'Analytics') 
-        return this.analyticsIcon;
-    else if(tab ===  'Charts')
-        return this.gridIcon;
-    else if(tab ===  'Graphs')
-        return this.barGraphsIcon;
-      
-    return this.homeIcon; 
+    switch (tab) {
+      case 'Dashboard':
+        return groupIcon;
+      case 'Annual Income':
+        return dollarIcon;
+      case 'Checks & Deduction':
+        return fileReportIcon;
+      case 'Map':
+        return imageMapEditorIcon;
+      case 'Production':
+        return gearIcon;
+      case 'Reports':
+        return graphIcon;
+      case 'Upload Checks':
+        return cloudIcon;
+      case 'Check files':
+        return fileTxtIcon;
+      case 'Assets':
+        return alignItemsEndAltIcon;
+      case 'User Management':
+        return userOutlineIcon;
+      default:
+        return homeIcon;
+    }
+  }
+  
+  getTabShortForm( tab: string): string {
+    switch (tab) {
+      case 'Dashboard':
+        return 'home';
+      case 'Annual Income':
+        return 'analytics';
+      case 'Checks & Deduction':
+        return 'incomplete';
+      case 'Map':
+        return 'analytics';
+      case 'Production':
+        return 'incomplete';
+      case 'Reports':
+        return 'graphs';
+      case 'Upload Checks':
+        return 'incomplete';
+      case 'Check files':
+        return 'graphs';
+      case 'Assets':
+        return 'incomplete';
+      case 'User Management':
+        return 'charts';
+      default:
+        return tab;
+    }
   }
 
   logOut() {

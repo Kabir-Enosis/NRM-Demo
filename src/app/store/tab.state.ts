@@ -6,6 +6,6 @@ export interface appState {
 }
 
 export const initialState: appState = {
-    selectedTab: {selectedTab: 'Home'},
+    selectedTab: {selectedTab: 'Dashboard'},
     isLoggedIn: true, 
   };
