@@ -26,7 +26,7 @@ import { InputsModule } from "@progress/kendo-angular-inputs";
     PDFModule,
     ExcelModule,],
   templateUrl: './charts.component.html',
-  styleUrl: './charts.component.css'
+  styleUrl: './charts.component.scss'
 })
 
 export class ChartsComponent implements OnInit {

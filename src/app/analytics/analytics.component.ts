@@ -10,7 +10,7 @@ import { IntlService } from "@progress/kendo-angular-intl";
   standalone: true,
   imports: [KENDO_MAP, CardModule, ChartsModule],
   templateUrl: './analytics.component.html',
-  styleUrl: './analytics.component.css'
+  styleUrl: './analytics.component.scss'
 })
 export class AnalyticsComponent {
   tileSubdomains = ["a", "b", "c"];

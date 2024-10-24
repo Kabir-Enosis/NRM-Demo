@@ -12,7 +12,7 @@ import { Store } from '@ngrx/store';
   standalone: true,
   imports: [SplitterModule, FormsModule, LayoutModule, InputsModule, ButtonsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   username = '';

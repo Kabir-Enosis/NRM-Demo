@@ -14,7 +14,7 @@ import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
   standalone: true,
   imports: [CommonModule, LayoutModule,ListBoxModule, ChartModule, IconsModule, ChipModule, CommonModules, ProgressBarModule],
   templateUrl: './graphs.component.html',
-  styleUrl: './graphs.component.css'
+  styleUrl: './graphs.component.scss'
 })
 export class GraphsComponent {
   data: any = [];

@@ -6,6 +6,7 @@ import { IconsModule } from "@progress/kendo-angular-icons";
 import { NavigationModule } from "@progress/kendo-angular-navigation";
 import {
   bellIcon,
+  caretAltDownIcon,
   menuIcon,
   searchIcon,
   SVGIcon,
@@ -17,11 +18,12 @@ import {
   standalone: true,
   imports: [CommonModules, IndicatorsModule, IconsModule, NavigationModule, LayoutModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   public menuIcon: SVGIcon = menuIcon;
   public searchIcon: SVGIcon = searchIcon;
   public bellIcon: SVGIcon = bellIcon;
+  public dropdownIcon: SVGIcon = caretAltDownIcon;
   public accountImg = '/image.png';
 }

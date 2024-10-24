@@ -26,27 +26,29 @@ import {
   fileReportIcon,
   imageMapEditorIcon,
   alignItemsEndAltIcon,
-  userOutlineIcon,
+  userOutlineIcon, 
+  caretAltDownIcon,
 } from "@progress/kendo-svg-icons";
-import { Image } from '@progress/kendo-drawing';
-
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [DrawerModule, AppBarModule, ButtonModule, InputsModule, CommonModules, RouterOutlet, TextBoxModule, CommonModule, IconsModule ],
+  imports: [DrawerModule, AppBarModule, ButtonModule, InputsModule, CommonModules, RouterOutlet, TextBoxModule, CommonModule, IconsModule  ],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css',
+  styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
   generalTabs = ['Dashboard', 'Annual Income', 'Checks & Deduction'];
   analyticsTabs = ['Map', 'Production', 'Reports'];
   managementTabs = ['Upload Checks', 'Check files', 'Assets', 'User Management'];
+  assetsList = ['My Counties', 'My producers', 'My wells', 'My Properties'];
+  public assetsDropdownOpen: boolean = false;
   isCollapsed: boolean = false;
   selectedTab$!: Observable<string> 
   userIcon: SVGIcon = userIcon;
   leftarw: SVGIcon = caretAltLeftIcon;
   rightarw: SVGIcon = caretAltRightIcon;
+  public dropdownIcon: SVGIcon = caretAltDownIcon;
 
   constructor(private store: Store, private router: Router) {
     this.selectedTab$ = this.store.select(getSelectedTab);
@@ -56,6 +58,8 @@ export class SidebarComponent {
   }
 
   tabChanged(tab: string) {
+    if(tab === 'Assets')
+      return;
     let mappedTab: string = this.getTabShortForm(tab);
     this.store.dispatch(selectTab({ tab }));
     this.router.navigate([`/dashboard/${mappedTab}`]);
@@ -122,6 +126,11 @@ export class SidebarComponent {
 
   collapse() {
     this.isCollapsed = !this.isCollapsed;
+  }
+
+  toggleAssetsDropdown(event: Event) {
+    event.stopPropagation(); 
+    this.assetsDropdownOpen = !this.assetsDropdownOpen;
   }
 
 }

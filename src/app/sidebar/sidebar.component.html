@@ -43,11 +43,30 @@
       <li class="group-title">{{ isCollapsed ? '' : 'Management' }}</li>
       <li 
         *ngFor="let tab of managementTabs"
-        [class.active]="(selectedTab$ | async) === tab"
+        [class.active]="(selectedTab$ | async) === tab && tab!== 'Assets'"
+        [ngClass]="{'no-hover': assetsDropdownOpen}"
         (click)="tabChanged(tab)">
         <div class="selectBar" *ngIf="(selectedTab$ | async) === tab"></div>
         <kendo-svgicon [icon]="getIcon(tab)"></kendo-svgicon>
         {{ isCollapsed ? '' : tab }}
+
+        <ng-container *ngIf="tab === 'Assets' && !isCollapsed">
+          <button class='drop-icon' (click)="toggleAssetsDropdown($event)">
+            <kendo-svgicon [icon]="dropdownIcon"></kendo-svgicon>
+          </button>
+      
+          <ul *ngIf="assetsDropdownOpen" class="dropdown-list">
+            <li 
+              *ngFor="let asset of assetsList"
+              [class.active]="(selectedTab$ | async) === asset"
+              (click)="tabChanged(asset)"
+              class="sub-tab"
+            >
+              <div class="selectBar" *ngIf="(selectedTab$ | async) === asset"></div>
+              {{ isCollapsed ? '' : asset }}
+            </li>
+          </ul>
+        </ng-container>
       </li>
     </ul>
   </div>

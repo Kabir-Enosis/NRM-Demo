@@ -102,7 +102,7 @@
 
   .logo-container {
     display: flex;
-    height: 10%;
+    height: 70px;
     justify-content: center;  
     margin-bottom: 20px;  
   }
@@ -110,4 +110,26 @@
   .logo {
     max-width: 80%;  
     border-radius: 8px;  
+  }
+
+  .drop-icon {
+    background: transparent;
+    border: 0;
+    margin-left: 60px;
+  }
+  .dropdown-list {
+    margin-left: 20px; 
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sub-tab {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+  }
+  
+  li.no-hover:hover {
+    background-color: white; 
   }

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './incomplete.component.html',
-  styleUrl: './incomplete.component.css'
+  styleUrl: './incomplete.component.scss'
 })
 export class IncompleteComponent {
 
