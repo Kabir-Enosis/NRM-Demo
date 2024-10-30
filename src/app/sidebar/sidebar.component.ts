@@ -48,7 +48,7 @@ export class SidebarComponent {
   userIcon: SVGIcon = userIcon;
   leftarw: SVGIcon = caretAltLeftIcon;
   rightarw: SVGIcon = caretAltRightIcon;
-  public dropdownIcon: SVGIcon = caretAltDownIcon;
+  dropdownIcon: SVGIcon = caretAltDownIcon;
 
   constructor(private store: Store, private router: Router) {
     this.selectedTab$ = this.store.select(getSelectedTab);

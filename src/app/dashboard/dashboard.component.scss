@@ -10,19 +10,18 @@
     display: flex;
     flex-direction: column;
     flex: 1; 
+    height: 100vh;
     padding-left: 20px;
   }
   
   app-sidebar {
     width: 230px;
     height: calc(100% - 15px);
-    overflow: visible;
   }
   
   .content-area {
     flex: 1; 
     padding: 5px 5px;
-    overflow-y: auto; 
   }
   
   

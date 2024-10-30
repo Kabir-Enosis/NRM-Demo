@@ -12,4 +12,136 @@
     width: 100%;
     height: 100%;
   }
+
+kendo-grid {
+    border-radius: 10px;
+}
+.home-grid .k-toolbar {
+    padding: 10px;
+}
+.grid-button {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f1f2f6;
+    border: 0;
+}
+.grid-button:hover{
+    background-color: #dddee6;
+}
+
+.export-button {
+    background-color: #e0434a;
+    color: #fff;
+}
+
+.export-button:hover {
+    background-color:  #ce474e;
+}
+.grid-title {
+    color: #545e72;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.grid-search-box {
+    padding: 2px 2px;
+    width: 30%;
+}
+
+.home-grid {
+    flex: 1;
+    margin: 0px 20px 50px 0px;
+    background-color: #ffffff;
+}
+
+.home-grid .k-grid-table {
+    border-collapse: collapse;
+}
+
+.home-grid .k-grid tr,
+.home-grid .k-grid .k-table-row,
+.home-grid .k-grid .k-table-alt-row {
+    background-color: #ffffff;
+    border-bottom: 1.5px solid #e0e0e0;
+    padding: 15px;
+}
+
+.home-grid .k-grid .k-table td,
+.home-grid .k-grid-header .k-header,
+.home-grid .k-grid-toolbar {
+    border: none;
+}
+
+.home-grid .k-grid .k-table-alt-row {
+    background-color: #ffffff ; 
+}
+
+.home-grid .k-grid .k-table td, 
+.home-grid .k-grid .k-table th {
+    padding: 12px 8px;
+}
+
+.home-grid .k-grid-content {
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: 0 0 10px 10px;
+}
+
+.k-grid-content::-webkit-scrollbar {
+    width: 4px; 
+}
+
+.k-grid-content::-webkit-scrollbar-track {
+    background: transparent; 
+    border-radius: 10px; 
+}
+
+.k-grid-content::-webkit-scrollbar-thumb {
+    background: #b3b3b3; 
+    border-radius: 10px; 
+}
+
+.k-grid-content::-webkit-scrollbar-thumb:hover {
+    background: #999999; 
+}
+
+.k-grid tbody tr {
+    transition: background-color 0.3s ease;
+}
+.k-grid tbody tr:hover {
+    background-color: #c2c2c2;  
+}
+
+.k-grid-header {
+    padding-right: 0 !important;
+}
+
+.home-grid .k-grid-header {
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2); 
+    z-index: 1;
+}
+
+.header-icon {
+    margin-left: 8px; 
+  }
+
+  .cell-icon {
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .grey-cell-text-cl {
+    color: #545e72;
+  }
+
+  .text-green-500 {
+    color: #2ca44d; 
+    background-color: #dff1e4;
+    border-radius: 5px;
+  }
+  .text-red-500 {
+    color: #f52222; 
+    background-color: #fae3e4;
+    border-radius: 5px;
+  }
   

@@ -34,3 +34,76 @@
     </kendo-chart>
   </div>
   
+  <div class="home-grid">
+    <kendo-grid
+      [kendoGridBinding]="gridData"
+      [sortable]="true" 
+      [style.width.%]="100"
+      class="custom-grid"
+  >
+      
+      <ng-template kendoGridToolbarTemplate >
+        <div class="grid-title">Check List</div>
+        <kendo-grid-spacer></kendo-grid-spacer>
+        <kendo-textbox
+          placeholder="Search by check or producer name"
+          class="grid-search-box"
+          [style.width.px]="320"
+        >
+        <ng-template kendoTextBoxPrefixTemplate>
+          <kendo-svgicon [icon]="searchIcon"></kendo-svgicon>
+        </ng-template>
+        </kendo-textbox>
+        <button class="grid-button grey-cell-text-cl">Customize Columns</button>
+        <button  class="grid-button grey-cell-text-cl">
+          <kendo-svgicon [icon]="filterIcon"></kendo-svgicon>
+          Filter
+        </button>
+        <button  class="grid-button export-button">
+          Export as
+          <kendo-svgicon [icon]="dropdownIcon"></kendo-svgicon>
+        </button>
+      </ng-template>
+
+      <kendo-grid-column 
+        *ngFor="let column of columns" 
+        [field]="column.field" 
+        [title]="column.title" 
+        [width]="column.width">
+
+          <ng-template kendoGridHeaderTemplate let-column="column">
+            <span  [ngClass]="{ 'grey-cell-text-cl': column.field === 'gross_income' || column.field === 'date' || column.field === 'bonus' || column.field === 'deductions' || column.field === 'net_income'}">
+              <span >{{ column.title }}</span>
+              <kendo-svgicon 
+                [icon]="arrowsSwapIcon" 
+                *ngIf="!column.kendoGridSortedColumn" 
+                class="header-icon"
+              ></kendo-svgicon>
+            </span>
+          </ng-template>
+
+          <ng-template kendoGridCellTemplate let-dataItem="dataItem" let-column="column">
+            <span *ngIf="column.field === 'amount'">
+              <kendo-svgicon
+                [icon]="dataItem.amount > 200 ? upArrowIcon : downArrowIcon"
+                [ngClass]="{
+                  'text-green-500': dataItem.amount > 200,
+                  'text-red-500': dataItem.amount < 200
+                }"
+                class="cell-icon"
+              ></kendo-svgicon>
+            </span>
+
+            <span  [ngClass]="{ 'grey-cell-text-cl': column.field === 'gross_income' || column.field === 'date' || column.field === 'bonus' || column.field === 'deductions' || column.field === 'net_income'}">
+              <span *ngIf="column.field === 'gross_income' || column.field === 'bonus' || column.field === 'deductions' || column.field === 'net_income' || column.field === 'amount'">
+                <kendo-svgicon [icon]="dollarIcon" class="cell-icon"></kendo-svgicon>
+              </span>
+              <span>{{ dataItem[column.field] }}</span>
+            </span>
+          </ng-template>
+
+      </kendo-grid-column>
+        
+
+    </kendo-grid>
+  </div>
