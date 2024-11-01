@@ -84,7 +84,6 @@ kendo-grid {
 .home-grid .k-grid-content {
     max-height: 400px;
     overflow-y: auto;
-    border-radius: 0 0 10px 10px;
 }
 
 .k-grid-content::-webkit-scrollbar {
@@ -145,3 +144,252 @@ kendo-grid {
     border-radius: 5px;
   }
   
+
+  .grid-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+  }
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-center span {
+    margin: 0 5px;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .page-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px; 
+    height: 25px;
+  }
+  .footer-center .active {
+    background: rgb(184, 184, 184);
+    border-radius: 5px;
+  }
+
+  .footer-right button {
+    margin-left: 10px;
+  }
+
+  .footer-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .footer-button:hover{
+    background-color: #dddee6;
+}
+
+.filter-row input,
+.filter-reset-button {
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.filter-reset-button {
+  background-color: #e0434a;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.grid-toolbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-row-container {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.filter-row {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background-color: #ffffff; 
+  border-bottom: none; 
+}
+
+input[type="date"],
+input[type="number"] {
+  flex: 1; 
+}
+
+.filter-reset-button {
+  background-color: #e63946; 
+  color: white;
+  border: none; 
+  padding: 5px 10px; 
+  width: 10%;
+  cursor: pointer; 
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #545e72;
+  border: 1px solid #ccc;
+  min-width: 13%;
+  height: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+  kendo-datepicker {
+    width: 100%;
+    border: none;
+    background: transparent;
+    .k-icon, .k-i-calendar, .k-button {
+      display: none !important;
+    }
+  }
+}
+
+.filter-button:hover {
+  background-color: #f0f0f0;
+  border-color: #aaa;
+}
+
+.filter-button, .filter-reset-button {
+  flex: 1 1 auto; // Flex to take available space but still shrink if needed
+}
+.button-icon-left {
+  color: #545e72;
+}
+
+.button-icon-right {
+  margin-left: auto;
+  color: #545e72;
+}
+
+.k-popup {
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+.popup-card {
+  padding: 16px;
+  width: 320px;
+  background-color: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+
+  h4 {
+    margin: 0 0 12px;
+    font-size: 16px;
+    color: #333;
+  }
+
+  .range-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+
+    label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .min-max-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .input-number {
+      width: 60px;
+      padding: 4px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  }
+
+  .range-slider {
+    width: 100%;
+    display: flex;
+    margin-bottom: 12px;
+
+    kendo-rangeslider {
+      width: 100%;
+    }
+  }
+
+
+  .popup-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+  
+    .dropdown-button {
+      background-color: #ffffff;
+      color: #545e72;
+      border: 1px solid #545e72;
+      border-radius: 4px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  
+      &:hover {
+        background-color: #d6d6d6;
+      }
+    }
+  
+    .actions-button {
+      display: flex;
+      gap: 10px;
+  
+      .action-button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+  
+        &.cancel {
+          background-color: #f2f2f2;
+          color: #545e72;
+  
+          &:hover {
+            background-color: #ddd;
+          }
+        }
+  
+        &.apply {
+          background-color: #e0434a;
+          color: #fff;
+  
+          &:hover {
+            background-color: #ce474e;
+          }
+        }
+      }
+    }
+  }
+  
+}
