@@ -11,11 +11,13 @@ import { FormsModule } from '@angular/forms';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { PopupModule } from '@progress/kendo-angular-popup';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { CustomGridComponent } from '../custom-grid/custom-grid.component';
+import { grid2Data } from './grid2';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ChartModule, CommonModule, GridModule, IconsModule,  InputsModule, TextBoxModule, FormsModule, DropDownsModule, PopupModule, DateInputsModule],
+  imports: [ChartModule, CommonModule, GridModule, IconsModule,  InputsModule, TextBoxModule, FormsModule, DropDownsModule, PopupModule, DateInputsModule, CustomGridComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   encapsulation: ViewEncapsulation.None
@@ -36,32 +38,10 @@ export class HomeComponent {
   calendarIcon: SVGIcon = calendarIcon;
   leftarrow: SVGIcon = chevronLeftIcon;
   rightarrow: SVGIcon = chevronRightIcon;
-  pageSize = 10;
-  pageSizes = [5, 10, 20, 50];
-  skip = 0;
-  currentPage = 1;
-  totalPage = 0;
-  showFilterRow = false;
-  filters = {
-    date: '',
-    field1: null,
-    field2: null,
-    field3: null,
-    field4: null,
-    field5: null
-  };
-  showPopup = false;
-  filterField = '';
-  minValue: number | null = null;
-  maxValue: number | null = null;
-  value: [number, number] = [100, 1000];
-  min = 0;
-  max = 10000;
-  filterAnchor!: HTMLElement ;
+  
 
   public constructor () {
     this.years = this.groupedData.map(data => data.year);
-    this.totalPage = Math.ceil(this.gridData.length / this.pageSize);
   }
 
   public barSeries: any[] = [
@@ -71,6 +51,7 @@ export class HomeComponent {
   ];
   
   gridData = gridData;
+  grid2data = grid2Data;
   public groupField = 'category';
 
   columns = [
@@ -84,98 +65,27 @@ export class HomeComponent {
     { field: 'net_income', title: 'Net Income', width: 120 }
   ];
 
+  filterColumns = [
+    { label: 'Amount', field: 'amount' },
+    { label: 'Gross amount', field: 'gross' },
+    { label: 'Net income', field: 'net' },
+    { label: 'Bonus', field: 'bonus' },
+    { label: 'Deduction', field: 'deduction' },
+  ];
+
   getDataForSeries(seriesName: string): any[] {
     return this.groupedData.filter(item => item.category === seriesName);
   }
 
-  get totalPages() {
-    return Math.ceil(this.gridData.length / this.pageSize);
-  }
+  grid2Columns = [
+    { field: 'Id', title: 'ID', width: 100 },
+    { field: 'name', title: 'Name', width: 100 },
+    { field: 'prof', title: 'Proffessor', width: 100 },
+    { field: 'sub', title: 'Subject', width: 150 },
+  ]
 
-  onPageChange(event: any) {
-    this.currentPage = event.page;
-  }
-
-  onPageSizeChange(value: any) {
-    this.skip = 0;
-    this.pageSize = value;
-    this.totalPage = Math.ceil(this.gridData.length / this.pageSize);
-    this.currentPage = 1; 
-  }
-
-  goToPage(page: string|number) {
-    if(typeof page === 'number'){
-      this.currentPage = page;
-      this.skip = (page - 1) * this.pageSize;
-    }
-  }
-
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.skip -= this.pageSize
-    }
-  }
-
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.skip += this.pageSize
-    }
-  }
-
-  get pageNumbers() {
-    const totalPages = this.totalPages;
-    const currentPage = this.currentPage;
-    const maxVisiblePages = 6;
+  grid2FilterCol = [
+    { label: 'Id', field: 'Id' },
+  ]
   
-    if (totalPages <= maxVisiblePages) {
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
-    }
-  
-    const pages = [];
-  
-    if (currentPage <= 3 || currentPage >= totalPages-2) {
-      pages.push(1, 2, 3, '...', totalPages-2, totalPages-1, totalPages);
-    } else {
-      pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
-    }
-  
-    return pages;
-  }
-  
-
-  toggleFilterRow() {
-    this.showFilterRow = !this.showFilterRow;
-  }
-
-  toggleDropdown(field: string, anchor: HTMLElement){
-    this.filterField = field;
-    this.filterAnchor = anchor;
-    this.showPopup = !this.showPopup;
-  }
-
-  resetFilters() {
-    this.filters = {
-      date: '',
-      field1: null,
-      field2: null,
-      field3: null,
-      field4: null,
-      field5: null
-    };
-  }
-  
-  onTogglePopup(field: string) {
-    this.filterField = field;
-    this.showPopup = !this.showPopup;
-  }
-
-  onCancel() {
-    this.showPopup = false;
-  }
-
-  onApply() {
-    this.showPopup = false;
-  }
 }
