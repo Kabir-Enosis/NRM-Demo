@@ -204,17 +204,20 @@
 
       <ng-template kendoPagerTemplate >
         <div class="grid-footer grey-cell-text-cl" >
-          <div class="footer-left">
+          <div class="footer-left ">
             <select [(ngModel)]="pageSize" (change)="onPageSizeChange(pageSize)" class="footer-button">
               <option *ngFor="let size of [10, 15, 20, 50]" [value]="size">{{ size }} items</option>
             </select>
           </div>
     
           <div class="footer-center">
-            <span class="page-number" *ngFor="let page of pageNumbers; let i = index"
-                  [class.active]="currentPage === i + 1"
-                  (click)="goToPage(i + 1)">
-              {{ i + 1 }}
+            <span 
+              class="page-number" 
+              *ngFor="let page of pageNumbers" 
+              [class.active]="currentPage === page"
+              (click)="goToPage(page)"
+            >
+              {{ page }}
             </span>
           </div>
     

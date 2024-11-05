@@ -103,9 +103,11 @@ export class HomeComponent {
     this.currentPage = 1; 
   }
 
-  goToPage(page: number) {
-    this.currentPage = page;
-    this.skip = (page - 1) * this.pageSize;
+  goToPage(page: string|number) {
+    if(typeof page === 'number'){
+      this.currentPage = page;
+      this.skip = (page - 1) * this.pageSize;
+    }
   }
 
   prevPage() {
@@ -123,8 +125,25 @@ export class HomeComponent {
   }
 
   get pageNumbers() {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    const totalPages = this.totalPages;
+    const currentPage = this.currentPage;
+    const maxVisiblePages = 6;
+  
+    if (totalPages <= maxVisiblePages) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+  
+    const pages = [];
+  
+    if (currentPage <= 3 || currentPage >= totalPages-2) {
+      pages.push(1, 2, 3, '...', totalPages-2, totalPages-1, totalPages);
+    } else {
+      pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+    }
+  
+    return pages;
   }
+  
 
   toggleFilterRow() {
     this.showFilterRow = !this.showFilterRow;
