@@ -1,5 +1,5 @@
 <div class="group-bar-chart" *ngIf="groupedData && groupedData.length && barSeries && barSeries.length">
-    <kendo-chart>
+    <kendo-chart [transitions]="false" >
       <kendo-chart-title text="Sales by Product Group (2018-2021)"></kendo-chart-title>
       
       <kendo-chart-category-axis>
@@ -30,7 +30,7 @@
     </kendo-chart-value-axis>
     
       <kendo-chart-legend position="top"></kendo-chart-legend>
-      <kendo-chart-tooltip format="{0}" [visible]="true"></kendo-chart-tooltip>
+      <kendo-chart-tooltip format="{0}" [visible]="false" ></kendo-chart-tooltip>
     </kendo-chart>
   </div>
   

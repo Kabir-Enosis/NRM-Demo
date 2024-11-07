@@ -80,7 +80,7 @@ export class HomeComponent {
   grid2Columns = [
     { field: 'Id', title: 'ID', width: 100 },
     { field: 'name', title: 'Name', width: 100 },
-    { field: 'prof', title: 'Proffessor', width: 100 },
+    { field: 'prof', title: 'Profession', width: 100 },
     { field: 'sub', title: 'Subject', width: 150 },
   ]
 

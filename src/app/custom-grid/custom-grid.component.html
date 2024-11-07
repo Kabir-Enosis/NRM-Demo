@@ -44,7 +44,7 @@
         </div>
         
         <!-- dynamic filter List -->
-        <div class="filter-button" *ngFor="let filter of filterColumns" #anchor (click)="toggleDropdown(filter.label, anchor)">
+        <div class="filter-button" *ngFor="let filter of filterColumns" #anchor (click)="toggleFilterCardDropdown(filter.label, anchor)">
             <kendo-svgicon [icon]="dollarIcon" class="button-icon-left"></kendo-svgicon>
             <span>{{ filter.label }}</span>
             <kendo-svgicon [icon]="dropdownIcon" class="button-icon-right"></kendo-svgicon>
@@ -53,47 +53,17 @@
 
         <button class="filter-reset-button" (click)="resetFilters()">Reset Filters</button>
 
-        <kendo-popup [anchor]="filterAnchor" (anchorViewportLeave)="showPopup = false" *ngIf="showPopup">
-          <div class="popup-card">
-            <h4>Select {{filterField}}</h4>
-            <div class="popup-content">
-              <div class="range-inputs">
-                <div class="min-max-label">
-                  <label>Min</label>
-                  <label>Max</label>
-                </div>
-                <div class="min-max-label">
-                  <input type="number" [(ngModel)]="value[0]" class="input-number" />
-                  <input type="number" [(ngModel)]="value[1]" class="input-number" />
-                </div>
-              </div>
-              <div class="range-slider">
-                <kendo-rangeslider
-                  tickPlacement="none"
-                  [min]="min"
-                  [max]="max"
-                  [(ngModel)]="value"
-                >
-                </kendo-rangeslider>
-              </div>
-              <hr />
-            </div>
-            <div class="popup-actions">
-              <kendo-dropdownlist
-                [data]="[100, 200, 300]"
-                textField="text"
-                valueField="value"
-                [defaultItem]="{ value: null, text: 'is equal to' }"
-                style="margin-right: 10px"
-              >
-              </kendo-dropdownlist>
-              <div class="actions-button">
-                <button class="action-button cancel" (click)="onCancel()">Cancel</button>
-                <button class="action-button apply" (click)="onApply()">Apply Filter</button>
-              </div>
-            </div>
-          </div>
-        </kendo-popup>
+        <app-pop-up-card
+          [filterField]="filterField"
+          [minFilterNumber]="minFilterNumber"
+          [maxFilterNumber]="maxFilterNumber"
+          [value]="value"
+          [filterAnchor]="filterAnchor"
+          [showPopup]="showPopup"
+          (showPopupChange)="showPopup = $event"
+          (filterApply)="onFilterApply()"
+          (filterCancel)="onFilterCancel()"
+        ></app-pop-up-card>
       </div>
     </div>
   </ng-template>
@@ -154,7 +124,7 @@
       <div class="footer-center">
         <span
           class="page-number"
-          *ngFor="let page of pageNumbers"
+          *ngFor="let page of pageNumbersList"
           [class.active]="currentPage === page"
           (click)="goToPage(page)"
         >

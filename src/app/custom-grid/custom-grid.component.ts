@@ -9,11 +9,12 @@ import { IconsModule } from '@progress/kendo-angular-icons';
 import { InputsModule, TextBoxModule } from '@progress/kendo-angular-inputs';
 import { PopupModule } from '@progress/kendo-angular-popup';
 import { calendarIcon, caretAltDownIcon, caretAltExpandIcon, caretAltUpIcon, chevronDownIcon, chevronLeftIcon, chevronRightIcon, chevronUpIcon, dollarIcon, filterIcon, searchIcon, SVGIcon } from '@progress/kendo-svg-icons';
+import { PopUpCardComponent } from '../pop-up-card/pop-up-card.component';
 
 @Component({
   selector: 'app-custom-grid',
   standalone: true,
-  imports: [ChartModule, CommonModule, GridModule, IconsModule,  InputsModule, TextBoxModule, FormsModule, DropDownsModule, PopupModule, DateInputsModule],
+  imports: [ChartModule, CommonModule, GridModule, IconsModule,  InputsModule, TextBoxModule, FormsModule, DropDownsModule, PopupModule, DateInputsModule, PopUpCardComponent],
   templateUrl: './custom-grid.component.html',
   styleUrl: './custom-grid.component.css',
   encapsulation: ViewEncapsulation.None
@@ -55,8 +56,8 @@ export class CustomGridComponent {
   minValue: number | null = null;
   maxValue: number | null = null;
   value: [number, number] = [100, 1000];
-  min = 0;
-  max = 10000;
+  minFilterNumber = 0;
+  maxFilterNumber = 10000;
   filterAnchor!: HTMLElement ;
 
   get totalPages() {
@@ -84,20 +85,20 @@ export class CustomGridComponent {
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.skip -= this.pageSize
+      this.skip = (this.currentPage - 1) * this.pageSize;
     }
   }
 
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
-      this.skip += this.pageSize
+      this.skip = (this.currentPage - 1) * this.pageSize;
     }
   }
 
-  get pageNumbers() {
-    const totalPages = this.totalPages;
-    const currentPage = this.currentPage;
+  get pageNumbersList() {
+    const totalPages = Number(this.totalPages);
+    const currentPage = Number(this.currentPage || 1);
     const maxVisiblePages = 6;
   
     if (totalPages <= maxVisiblePages) {
@@ -105,13 +106,19 @@ export class CustomGridComponent {
     }
   
     const pages = [];
-  
-    if (currentPage <= 3 || currentPage >= totalPages-2) {
-      pages.push(1, 2, 3, '...', totalPages-2, totalPages-1, totalPages);
-    } else {
-      pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+    pages.push(1, 2, 3);
+
+    if(currentPage - 1 > 4)
+      pages.push('...');
+    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+      if (i > 3 && i < totalPages - 2) {
+          pages.push(i);
+      }
     }
-  
+    if(currentPage + 1 < totalPages - 3)
+      pages.push('...');
+    
+    pages.push(totalPages - 2, totalPages - 1, totalPages);
     return pages;
   }
   
@@ -120,7 +127,7 @@ export class CustomGridComponent {
     this.showFilterRow = !this.showFilterRow;
   }
 
-  toggleDropdown(field: string, anchor: HTMLElement){
+  toggleFilterCardDropdown(field: string, anchor: HTMLElement){
     this.filterField = field;
     this.filterAnchor = anchor;
     this.showPopup = !this.showPopup;
@@ -136,17 +143,12 @@ export class CustomGridComponent {
       field5: null
     };
   }
-  
-  onTogglePopup(field: string) {
-    this.filterField = field;
-    this.showPopup = !this.showPopup;
-  }
 
-  onCancel() {
+  onFilterCancel() {
     this.showPopup = false;
   }
 
-  onApply() {
+  onFilterApply() {
     this.showPopup = false;
   }
 }

@@ -1,0 +1,42 @@
+<kendo-popup [anchor]="filterAnchor" (anchorViewportLeave)="onAnchorViewportLeave()" *ngIf="showPopup">
+    <div class="popup-card">
+      <h4>Select {{filterField}}</h4>
+      <div class="popup-content">
+        <div class="range-inputs">
+          <div class="min-max-label">
+            <label>Min</label>
+            <label>Max</label>
+          </div>
+          <div class="min-max-label">
+            <input type="number" [(ngModel)]="value[0]" class="input-number" />
+            <input type="number" [(ngModel)]="value[1]" class="input-number" />
+          </div>
+        </div>
+        <div class="range-slider">
+          <kendo-rangeslider
+            tickPlacement="none"
+            [min]="minFilterNumber"
+            [max]="maxFilterNumber"
+            [(ngModel)]="value"
+          >
+          </kendo-rangeslider>
+        </div>
+        <hr />
+      </div>
+      <div class="popup-actions">
+        <kendo-dropdownlist
+          [data]="[100, 200, 300]"
+          textField="text"
+          valueField="value"
+          [defaultItem]="{ value: null, text: 'is equal to' }"
+          style="margin-right: 10px"
+        >
+        </kendo-dropdownlist>
+        <div class="actions-button">
+          <button class="action-button cancel" (click)="onFilterCancel()">Cancel</button>
+          <button class="action-button apply" (click)="onFilterApply()">Apply Filter</button>
+        </div>
+      </div>
+    </div>
+  </kendo-popup>
+  
