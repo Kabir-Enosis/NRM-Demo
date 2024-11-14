@@ -11,6 +11,7 @@ import { CustomGridComponent } from '../custom-grid/custom-grid.component';
 })
 export class IncompleteComponent {
   tableData = pageGrid;
+  gridDataLength = pageGrid.length;
   tableColumns = [
     { field: 'Id', title: 'ID', width: 100 },
     { field: 'name', title: 'Name', width: 100 },

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from '@progress/kendo-angular-charts';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
@@ -10,11 +10,13 @@ import { InputsModule, TextBoxModule } from '@progress/kendo-angular-inputs';
 import { PopupModule } from '@progress/kendo-angular-popup';
 import { calendarIcon, caretAltDownIcon, caretAltExpandIcon, caretAltUpIcon, chevronDownIcon, chevronLeftIcon, chevronRightIcon, chevronUpIcon, dollarIcon, filterIcon, searchIcon, SVGIcon } from '@progress/kendo-svg-icons';
 import { PopUpCardComponent } from '../pop-up-card/pop-up-card.component';
+import { AmountCellTemplateComponent } from '../amount-cell-template/amount-cell-template.component';
+import { GrayNumberCellTemplateComponent } from '../gray-number-cell-template/gray-number-cell-template.component';
 
 @Component({
   selector: 'app-custom-grid',
   standalone: true,
-  imports: [ChartModule, CommonModule, GridModule, IconsModule,  InputsModule, TextBoxModule, FormsModule, DropDownsModule, PopupModule, DateInputsModule, PopUpCardComponent],
+  imports: [ChartModule, CommonModule, GridModule, IconsModule,  InputsModule, TextBoxModule, FormsModule, DropDownsModule, PopupModule, DateInputsModule, GrayNumberCellTemplateComponent, PopUpCardComponent, AmountCellTemplateComponent],
   templateUrl: './custom-grid.component.html',
   styleUrl: './custom-grid.component.css',
   encapsulation: ViewEncapsulation.None
@@ -22,8 +24,12 @@ import { PopUpCardComponent } from '../pop-up-card/pop-up-card.component';
 export class CustomGridComponent {
 
   @Input() gridData: any[] = []; 
+  @Input() gridName: string = ''; 
   @Input() columns: any[] = [];
+  @Input() totalLength: number = 0;
   @Input() filterColumns: any[] = [];
+
+  @Output() LoadMoreData = new EventEmitter<{ pageNumber: number; pageSize: number; gridName: string }>();
   
   dropdownIcon: SVGIcon = caretAltDownIcon;
   filterIcon: SVGIcon = filterIcon;
@@ -61,7 +67,7 @@ export class CustomGridComponent {
   filterAnchor!: HTMLElement ;
 
   get totalPages() {
-    return Math.ceil(this.gridData.length / this.pageSize);
+    return Math.ceil(this.totalLength / this.pageSize);
   }
 
   onPageChange(event: any) {
@@ -71,28 +77,28 @@ export class CustomGridComponent {
   onPageSizeChange(value: any) {
     this.skip = 0;
     this.pageSize = value;
-    this.totalPage = Math.ceil(this.gridData.length / this.pageSize);
+    this.totalPage = Math.ceil(this.totalLength / this.pageSize);
     this.currentPage = 1; 
   }
 
   goToPage(page: string|number) {
     if(typeof page === 'number'){
       this.currentPage = page;
-      this.skip = (page - 1) * this.pageSize;
+      this.LoadMoreData.emit({ pageNumber: page, pageSize: this.pageSize, gridName: this.gridName });
     }
   }
 
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.skip = (this.currentPage - 1) * this.pageSize;
+      this.LoadMoreData.emit({ pageNumber: this.currentPage, pageSize: this.pageSize, gridName: this.gridName });
     }
   }
 
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
-      this.skip = (this.currentPage - 1) * this.pageSize;
+      this.LoadMoreData.emit({ pageNumber: this.currentPage, pageSize: this.pageSize, gridName: this.gridName });
     }
   }
 

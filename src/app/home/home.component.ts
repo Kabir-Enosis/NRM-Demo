@@ -38,10 +38,17 @@ export class HomeComponent {
   calendarIcon: SVGIcon = calendarIcon;
   leftarrow: SVGIcon = chevronLeftIcon;
   rightarrow: SVGIcon = chevronRightIcon;
-  
+  fullData = gridData;
+  fullData2 = grid2Data;
+  gridData: any[] = [];
+  grid2data: any[] = [];
+  grid1TotalLength = gridData.length;
+  grid2TotalLength = grid2Data.length;
 
   public constructor () {
     this.years = this.groupedData.map(data => data.year);
+    this.LoadMoreData({ pageNumber: 1, pageSize: 10, gridName: 'grid1' });
+    this.LoadMoreData({ pageNumber: 1, pageSize: 10, gridName: 'grid2' });
   }
 
   public barSeries: any[] = [
@@ -50,8 +57,6 @@ export class HomeComponent {
     { name: 'Product C', field: 'value', categoryField: 'year', color: '#3357FF' }
   ];
   
-  gridData = gridData;
-  grid2data = grid2Data;
   public groupField = 'category';
 
   columns = [
@@ -88,4 +93,19 @@ export class HomeComponent {
     { label: 'Id', field: 'Id' },
   ]
   
+  LoadMoreData({ pageNumber, pageSize, gridName }: { pageNumber: number; pageSize: number; gridName: string }){
+    const start = (pageNumber - 1) * pageSize;
+    switch (gridName) {
+      case 'grid1':
+        this.gridData = this.fullData.slice(start, start + pageSize);
+        break;
+      case 'grid2':
+        this.grid2data = this.fullData2.slice(start, start + pageSize);
+        break;
+      default:
+        break;
+    }
+    
+  }
+
 }

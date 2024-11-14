@@ -1,0 +1,14 @@
+<span>
+    <kendo-svgicon
+          [icon]="dataItem.amount > 200 ? upArrowIcon : downArrowIcon"
+          [ngClass]="{
+            'text-green-500': dataItem.amount > 200,
+            'text-red-500': dataItem.amount < 200
+          }"
+          class="cell-icon"
+        ></kendo-svgicon>
+    <span class="bold-dark">
+        <kendo-svgicon [icon]="dollarIcon" class="cell-icon"></kendo-svgicon>
+        <span>{{ dataItem.amount }}</span>
+    </span>
+</span>

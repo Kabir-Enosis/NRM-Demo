@@ -3,8 +3,6 @@
 <kendo-grid
   [kendoGridBinding]="gridData"
   [sortable]="true"
-  [pageSize]="pageSize"
-  [skip]="skip"
   [pageable]="true"
   [style.width.%]="100"
   (dataStateChange)="onPageChange($event)"
@@ -89,27 +87,29 @@
     </ng-template>
 
     <ng-template kendoGridCellTemplate let-dataItem="dataItem" let-column="column">
-      <span *ngIf="column.field === 'amount'">
-        <kendo-svgicon
-          [icon]="dataItem.amount > 200 ? upArrowIcon : downArrowIcon"
-          [ngClass]="{
-            'text-green-500': dataItem.amount > 200,
-            'text-red-500': dataItem.amount < 200
-          }"
-          class="cell-icon"
-        ></kendo-svgicon>
-      </span>
-      <span 
-        [ngClass]="{
-            'grey-cell-text-cl': ['gross_income', 'date', 'bonus', 'deductions', 'net_income'].includes(column.field),
-            'bold-dark': ['check_id', 'amount', 'producer'].includes(column.field)
-        }"
-        >
-        <span *ngIf="column.field === 'gross_income' || column.field === 'bonus' || column.field === 'deductions' || column.field === 'net_income' || column.field === 'amount'">
-          <kendo-svgicon [icon]="dollarIcon" class="cell-icon"></kendo-svgicon>
+
+      <ng-container [ngSwitch]="column.field">
+    
+        <app-amount-cell-template
+          *ngSwitchCase="'amount'"
+          [dataItem]="dataItem">
+        </app-amount-cell-template>
+
+        <app-gray-number-cell-template
+          *ngSwitchCase="['gross_income', 'bonus', 'deductions', 'net_income'].includes(column.field) ? column.field : '' "
+          [dataItem]="dataItem"
+          [column]="column" >
+
+        </app-gray-number-cell-template>
+
+        <span 
+          *ngSwitchDefault
+          [ngClass]="column.field === 'date' ? 'grey-cell-text-cl' : 'bold-dark'" >
+            {{ dataItem[column.field] }}  
         </span>
-        <span>{{ dataItem[column.field] }}</span>
-      </span>
+    
+      </ng-container>
+
     </ng-template>
   </kendo-grid-column>
 

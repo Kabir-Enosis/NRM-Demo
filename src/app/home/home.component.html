@@ -35,6 +35,6 @@
   </div>
   
   <div class="home-grid">
-    <app-custom-grid [gridData]="gridData" [columns]="columns" [filterColumns]="filterColumns"></app-custom-grid>
-    <app-custom-grid [gridData]="grid2data" [columns]="grid2Columns" [filterColumns]="grid2FilterCol"></app-custom-grid>
+    <app-custom-grid [gridData]="gridData" [gridName]="'grid1'" [columns]="columns" [filterColumns]="filterColumns" [totalLength]="grid1TotalLength" (LoadMoreData)="LoadMoreData($event)"></app-custom-grid>
+    <app-custom-grid [gridData]="grid2data" [gridName]="'grid2'" [columns]="grid2Columns" [filterColumns]="grid2FilterCol" [totalLength]="grid2TotalLength" (LoadMoreData)="LoadMoreData($event)"></app-custom-grid>
   </div>

@@ -1,0 +1,19 @@
+.bold-dark {
+    font: bolder;
+    color: black;
+  }
+
+  .text-green-500 {
+    color: #2ca44d; 
+    background-color: #dff1e4;
+    border-radius: 5px;
+  }
+  .text-red-500 {
+    color: #f52222; 
+    background-color: #fae3e4;
+    border-radius: 5px;
+  }
+  .cell-icon {
+    margin-right: 4px;
+    vertical-align: middle;
+  }
